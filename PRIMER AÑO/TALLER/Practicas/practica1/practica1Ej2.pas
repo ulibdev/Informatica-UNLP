@@ -59,7 +59,7 @@ begin
 	for i:=2 to diml do begin
 			aux:=v[i];
 			j:=i-1;
-			while(aux.codigo < v[j].codigo) and (j>0) do begin
+			while(j>0) and (aux.codigo < v[j].codigo) do begin
 				v[j+1]:= v[j];
 				j:=j-1;
 			end; 
