@@ -27,10 +27,10 @@ var
 	nuevo:lista;
 begin
 	new(nuevo);
-	nuevo^.dato:=random(20-10+1)+10;
+	nuevo^.dato:=random(200-100+1)+100;
 	nuevo^.sig:=l;
 	l:=nuevo;
-	if(nuevo^.dato <> 10) then cargarLista(l);
+	if(nuevo^.dato <> 100) then cargarLista(l);
 end;
 
 procedure imprimirLista(l:lista);
@@ -40,7 +40,7 @@ begin
 		imprimirLista(l^.sig);
 	end;
 end;
-//preguntar 
+//preguntar por que imprime raro
 procedure imprimirListaInversa(l:lista);
 begin
 	if(l<>nil)then begin
@@ -49,8 +49,8 @@ begin
 	end;
 end;
 
-
-function devolverMinimo(l:lista;num:integer):integer;
+//esta mal 
+{function devolverMinimo(l:lista;num:integer):integer;
 begin
 	if(l<>nil) then begin
 		if(l^.dato < num) then begin
@@ -60,6 +60,18 @@ begin
 		else
 			devolverMinimo:= num
 	end
+end;}
+
+function devolverMinimo(l:lista):integer;
+var
+	n:integer;
+begin
+	if(l<>nil) then begin
+		n:=devolverMinimo(l^.sig);
+		if(n< l^.dato) then devolverMinimo:= n
+						else devolverMinimo:=l^.dato
+	
+	end else devolverMinimo := 9999;
 end;
 
 function buscar(l:lista;num:integer):boolean;
@@ -74,16 +86,15 @@ begin
 end;
 
 var
-	l:lista;min:integer;
+	l:lista;
 BEGIN
-	min:=9999;
 	randomize;
 	cargarLista(l);
 	writeln('recursivo:');
 	imprimirLista(l);
 	writeln('inversa:');
 	imprimirListaInversa(l);
-	writeln('menor:',devolverMinimo(l,min));
-	writeln('existe?',buscar(l,15))
+	writeln('menor:',devolverMinimo(l));
+	writeln('existe?',buscar(l,150))
 END.
 

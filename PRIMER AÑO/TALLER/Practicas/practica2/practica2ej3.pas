@@ -18,7 +18,7 @@ const
 	max=1550;
 	min=300;
 type
-	indice=-1..20;
+	indice=-1..dimf;
 	
 	vector= array [1..dimf] of integer;
 
@@ -45,7 +45,7 @@ begin
 		v[j+1]:=num;
 	end;
 end;
-
+//preguntar cual esta mejor
 //version uli
 Procedure busquedaDicotomica (v: vector; ini,fin: indice; dato:integer; var pos: indice);
 var
