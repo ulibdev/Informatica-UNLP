@@ -22,7 +22,7 @@ type
 	end;
 	finales = record
 		f:fecha;
-		codigo,legajo:integer;
+		codigo:integer;
 		nota:real;
 	end;
 	
@@ -36,6 +36,7 @@ type
 	arbol=^nodoa;
 	
 	nodoa=record
+		legajo:integer;
 		dato:lista;
 		hi,hd:arbol;
 	end;
@@ -50,23 +51,24 @@ begin
 	l:=aux;
 end;
 
-procedure agregarArbol(var a:arbol; f:finales);
+procedure agregarArbol(var a:arbol; f:finales; legajo:integer);
 begin
 	if(a=nil)then begin
 		new(a);
 		a^.dato:=nil;
+		a^.legajo:=legajo;
 		agregarNodo(a^.dato,f);
 		a^.hi:=nil;
 		a^.hd:=nil;
-	end else if (a^.dato^.dato.legajo > f.legajo) then agregarArbol(a^.hi,f)
-		else if(a^.dato^.dato.legajo < f.legajo ) then agregarArbol(a^.hd,f)
+	end else if (a^.legajo > legajo) then agregarArbol(a^.hi,f,legajo)
+		else if(a^.legajo < legajo ) then agregarArbol(a^.hd,f,legajo)
 		else agregarNodo(a^.dato,f);
 end;
 
-procedure leerFinal(var f:finales);
+procedure leerFinal(var f:finales;var legajo:integer);
 begin
-	write('legajo:');readln(f.legajo);
-	if(f.legajo<>0)then begin
+	write('legajo:');readln(legajo);
+	if(legajo<>0)then begin
 		write('codigo materia:');readln(f.codigo);
 		write('dia:');readln(f.f.dia);
 		write('mes:');readln(f.f.mes);
@@ -76,12 +78,12 @@ begin
 end;
 procedure cargarArbol(var a:arbol);
 var
-	f:finales;
+	f:finales;legajo:integer;
 begin
-	leerFinal(f);
-	while(f.legajo<>0)do begin
-		agregarArbol(a,f);
-		leerFinal(f);
+	leerFinal(f,legajo);
+	while(legajo<>0)do begin
+		agregarArbol(a,f,legajo);
+		leerFinal(f,legajo);
 	end;
 end;
 
@@ -90,7 +92,7 @@ begin
 	if(a<>nil)then begin
 		alumnosImpar(a^.hi,cant);
 		alumnosImpar(a^.hd,cant);
-		if(a^.dato^.dato.legajo mod 2 = 1) then cant:= cant+1;
+		if(a^.legajo mod 2 = 1) then cant:= cant+1;
 	end 
 end;
 
@@ -111,7 +113,7 @@ begin
 	if(a<>nil)then begin
 		informar(a^.hi);
 		informar(a^.hd);
-		writeln(a^.dato^.dato.legajo,' NOTAS:',calcularFinal(a^.dato));	
+		writeln(a^.legajo,' NOTAS:',calcularFinal(a^.dato));	
 
 	end;
 end;
@@ -140,7 +142,7 @@ begin
 		promedios(a^.hd,n);
 		calcularPromedio(a^.dato,prom);
 		if(prom > n ) then begin
-			writeln('legajo:',a^.dato^.dato.legajo);
+			writeln('legajo:',a^.legajo);
 			writeln('promedio:',prom:2:2);
 		end;
 	
