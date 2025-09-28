@@ -8,10 +8,13 @@ obtener edad 0. Luego de almacenar la información:
  */
 package tema2;
 
+import PaqueteLectura.GeneradorAleatorio;
+
 public class Ej02Persona {
     //utiliza un objeto del tipo persona previamente hecho
     public static void main(String[] args){
         Persona []p = new Persona[15];
+        GeneradorAleatorio.iniciar();
         int dni;
         String nombre;
         int diml=0, edad = PaqueteLectura.GeneradorAleatorio.generarInt(100);
@@ -19,7 +22,7 @@ public class Ej02Persona {
         while((diml<15) &&(edad != 0)){
             dni = PaqueteLectura.GeneradorAleatorio.generarInt(10000);
             nombre = PaqueteLectura.GeneradorAleatorio.generarString(5);
-            p[diml] = new Persona(nombre,dni,edad);
+            p[diml] = new Persona(nombre,dni,edad);//es lo mismo que poner los set
             diml++;
             edad = PaqueteLectura.GeneradorAleatorio.generarInt(100);
         }
