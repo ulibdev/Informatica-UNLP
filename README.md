@@ -8,5 +8,6 @@
 
 ### 🚀 Sobre este repositorio
 
-Subo prácticas y ejercicios de las materias que curso en la **Facultad de Informática (UNLP)**.
+Subo ejercicios de las materias que curso en la **Facultad de Informática (UNLP)**.
+
 </div>
