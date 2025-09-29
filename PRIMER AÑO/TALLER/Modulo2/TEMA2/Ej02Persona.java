@@ -17,21 +17,22 @@ public class Ej02Persona {
         GeneradorAleatorio.iniciar();
         int dni;
         String nombre;
-        int diml=0, edad = PaqueteLectura.GeneradorAleatorio.generarInt(100);
+        int diml=0, edad = GeneradorAleatorio.generarInt(100);
         
         while((diml<15) &&(edad != 0)){
-            dni = PaqueteLectura.GeneradorAleatorio.generarInt(10000);
-            nombre = PaqueteLectura.GeneradorAleatorio.generarString(5);
+            dni = GeneradorAleatorio.generarInt(999);
+            nombre = GeneradorAleatorio.generarString(5);
             p[diml] = new Persona(nombre,dni,edad);//es lo mismo que poner los set
             diml++;
-            edad = PaqueteLectura.GeneradorAleatorio.generarInt(100);
+            edad = GeneradorAleatorio.generarInt(100);
         }
         //preguntar si va el new persona realmente porque hay metodos para cambiar nombre
         int cantPersonas=0;
         Persona min = new Persona("minimo",10000,0);
-        for(diml=0;diml<15;diml++){
-            if(p[diml].getEdad() > 65)cantPersonas++;
-            if(p[diml].getDNI() < min.getDNI()) min=p[diml];
+        int i;
+        for(i=0;i<diml;i++){
+            if(p[i].getEdad() > 65)cantPersonas++;
+            if(p[i].getDNI() < min.getDNI()) min=p[i];
         }
         System.out.println("La cantidad de personas con +65 es "+cantPersonas);
         System.out.println(min.toString());
