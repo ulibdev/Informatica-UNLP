@@ -22,20 +22,19 @@ public class Hotel {
     public void aumentarPrecio(double monto){
         int i;
         for (i=0; i< dimf; i++){
-            vector[i].setCosto(monto + vector[i].getCosto());
+            vector[i].aumentarCosto(monto);
         }
     }
     
     @Override
     public String toString(){
-        int i;
+       
         String aux = "HABITACIONES:\n";
-        i = 0;
-        while(i < dimf){
-            if(vector[i].getOcupada()){
+       
+        for(int i = 0;i<dimf;i++){
+           
                 aux +="(Habitacion:"+(i+1)+","+vector[i].toString()+")"+"\n";
-            }
-            i++;
+            
         }
         return aux;
     }

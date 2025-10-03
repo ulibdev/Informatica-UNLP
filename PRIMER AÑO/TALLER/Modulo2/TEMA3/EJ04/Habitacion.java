@@ -34,6 +34,11 @@ public class Habitacion {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
+    public void aumentarCosto(double monto){
+        costo+=monto;
+    }
+    
     @Override
     public String toString(){
         String aux;
