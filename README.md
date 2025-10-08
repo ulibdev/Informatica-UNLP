@@ -8,7 +8,7 @@
 
 ### 🚀 Sobre este repositorio
 
-Aca subo ejercicios que hice de las materias que curso en la facultad, no te recomiendo PARA NADA, **ABSOLUTAMENTE NADA** ver lo que hay aca ya que
-principalmente pueden ser que esten mal y me haya olvidado de subirlos con las correcciones.
+Aca subo ejercicios que hice de las materias que curso en la facultad, no te recomiendo  **PARA NADA,ABSOLUTAMENTE NADA** guiarte de lo que hay aca ya que
+principalmente pueden ser que esten mal y me haya olvidado de subirlos con las correcciones porque esto es para no tener que llevar un pendrive a la facultad.
 
 </div>
