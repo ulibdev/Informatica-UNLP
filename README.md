@@ -8,6 +8,7 @@
 
 ### 🚀 Sobre este repositorio
 
-Subo ejercicios de las materias que curso en la **Facultad de Informática (UNLP)**.
+Aca subo ejercicios que hice de las materias que curso en la facultad, no te recomiendo PARA NADA, **ABSOLUTAMENTE NADA** ver lo que hay aca ya que
+principalmente pueden ser que esten mal y me haya olvidado de subirlos con las correcciones.
 
 </div>
