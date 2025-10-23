@@ -1,0 +1,60 @@
+programa p1ej2
+procesos
+  proceso juntarPapeles(ES paper:numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      paper:= paper + 1
+  fin
+  proceso lado
+  variables
+    papeles:numero
+  comenzar
+    papeles:=0
+    repetir 19
+      juntarPapeles(papeles)
+      mover
+    Informar("Papeles juntados ",papeles)
+  fin
+areas
+  area1:AreaP(10,10,10,29)
+  area2:AreaP(10,30,29,30)
+  area3:AreaP(30,11,30,30)
+  area4:AreaP(11,10,30,10)
+robots
+  robot rinfo1
+  comenzar
+    lado
+  fin
+  robot rinfo2
+  comenzar
+    derecha
+    lado
+  fin
+  robot rinfo3
+  comenzar
+    repetir 2
+      derecha
+    lado
+  fin
+  robot rinfo4
+  comenzar
+    repetir 3
+      derecha
+    lado
+  fin
+variables
+  bot1:rinfo1
+  bot2:rinfo2
+  bot3:rinfo3
+  bot4:rinfo4
+comenzar
+  AsignarArea(bot1,area1)
+  AsignarArea(bot2,area2)
+  AsignarArea(bot3,area3)
+  AsignarArea(bot4,area4)
+  Iniciar(bot1,10,10)
+  Iniciar(bot2,10,30)
+  Iniciar(bot3,30,30)
+  Iniciar(bot4,30,10)
+fin

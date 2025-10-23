@@ -1,0 +1,68 @@
+programa p1ej3
+procesos
+  proceso juntarPapeles(ES papel:numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      papel:= papel +1
+  fin
+  proceso juntarFlores(ES flor:numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      flor:= flor +1
+  fin
+  proceso escalon(E tamanioEscalon:numero ; ES cantEscalones:numero)
+  variables
+    cantPapeles:numero
+    cantFlores:numero
+  comenzar
+    cantPapeles:=0
+    cantFlores:=0
+    repetir tamanioEscalon
+      juntarFlores(cantFlores)
+      juntarPapeles(cantPapeles)
+      mover
+    derecha
+    repetir tamanioEscalon
+      juntarFlores(cantFlores)
+      juntarPapeles(cantPapeles)
+      mover
+    juntarFlores(cantFlores)
+    juntarPapeles(cantPapeles)
+    si(cantPapeles = (cantFlores + 1))
+      cantEscalones:= cantEscalones+1
+  fin
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+areas
+  area1:AreaC(1,1,100,100)
+robots
+  robot robot1
+  variables
+    escalonTamani:numero
+    cantEscalones:numero
+  comenzar
+    escalonTamani:= 1
+    cantEscalones:= 0
+    repetir 4
+      escalon(escalonTamani,cantEscalones)
+      escalonTamani:= escalonTamani+1
+      izquierda
+    Informar(cantEscalones)
+  fin
+variables
+  bot1:robot1
+  bot2:robot1
+  bot3:robot1
+comenzar
+  AsignarArea(bot1,area1)
+  AsignarArea(bot2,area1)
+  AsignarArea(bot3,area1)
+  Iniciar(bot1,12,14)
+  Iniciar(bot2,17,10)
+  Iniciar(bot3,22,6)
+fin

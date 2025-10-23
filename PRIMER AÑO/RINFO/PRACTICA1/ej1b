@@ -1,0 +1,48 @@
+programa p1ej1
+procesos
+  proceso juntarFlores(ES cantFlores: numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      cantFlores:= cantFlores + 1
+  fin
+  proceso depositarFlores
+  comenzar
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+areas
+  lacity:AreaC(1,1,100,100)
+robots
+  robot robot1
+  variables
+    f:numero
+    totalFlores:numero
+    cantEsquinas:numero
+  comenzar
+    cantEsquinas:=0
+    totalFlores:=0
+    repetir 99
+      mover
+      f:=0
+      juntarFlores(f)
+      si(f = 0)
+        cantEsquinas:= cantEsquinas+1
+      totalFlores:= totalFlores + f
+    depositarFlores
+    Informar("Total de flores depositada en la avenida",PosAv,totalFlores)
+    Informar("Total de esquinas sin flor en la avenida",PosAv,cantEsquinas)
+  fin
+variables
+  bot1:robot1
+  bot2:robot1
+  bot3:robot1
+comenzar
+  AsignarArea(bot1,lacity)
+  AsignarArea(bot2,lacity)
+  AsignarArea(bot3,lacity)
+  Iniciar(bot1,1,1)
+  Iniciar(bot2,3,1)
+  Iniciar(bot3,5,1)
+  
+fin
