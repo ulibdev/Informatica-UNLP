@@ -1,0 +1,104 @@
+programa ej1p2
+procesos
+  proceso juntarFlores(ES flores:numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      flores:= flores+1
+  fin
+  proceso recorrerAvenidas(ES flores:numero)
+  comenzar
+    repetir 9
+      juntarFlores(flores)
+      mover
+    juntarFlores(flores)
+  fin
+  proceso asignarID
+  comenzar
+    EnviarMensaje(1,bot1)
+    EnviarMensaje(2,bot2)
+    EnviarMensaje(3,bot3)
+    EnviarMensaje(4,bot4)
+    EnviarMensaje(5,bot5)
+    EnviarMensaje(6,bot6)
+  fin
+  proceso recibirFlores(ES bot:numero;ES cantFlores:numero)
+  comenzar
+    RecibirMensaje(bot,*)
+    si(bot = 1)
+      RecibirMensaje(cantFlores,bot1)
+    sino
+      si(bot = 2)
+        RecibirMensaje(cantFlores,bot2)
+      sino
+        si(bot = 3)
+          RecibirMensaje(cantFlores,bot3)
+        sino
+          si(bot = 4)
+            RecibirMensaje(cantFlores,bot4)
+          sino
+            si(bot = 5)
+              RecibirMensaje(cantFlores,bot5)
+            sino   
+              RecibirMensaje(cantFlores,bot6)
+  fin
+areas
+  area1:AreaP(1,1,1,10)
+  area2:AreaP(2,11,2,20)
+  area3:AreaP(3,21,3,30)
+  area4:AreaP(4,31,4,40)
+  area5:AreaP(5,41,5,50)
+  area6:AreaP(6,51,6,60)
+  areaf:AreaP(2,1,2,1)
+robots
+  robot juntador
+  variables
+    flor:numero
+    id:numero
+  comenzar
+    flor:=0
+    RecibirMensaje(id,botf)
+    recorrerAvenidas(flor)
+    EnviarMensaje(id,botf)
+    EnviarMensaje(flor,botf)
+  fin
+  robot fiscal
+  variables
+    cantFlores:numero
+    maxFlores:numero
+    bot:numero
+    robotMax:numero
+  comenzar
+    maxFlores:=-1
+    asignarID
+    repetir 6
+      recibirFlores(bot,cantFlores)
+      si(maxFlores<cantFlores)
+        maxFlores:=cantFlores
+        robotMax:=bot
+    Informar(robotMax,maxFlores)
+  fin
+variables
+  bot1:juntador
+  bot2:juntador
+  bot3:juntador
+  bot4:juntador
+  bot5:juntador
+  bot6:juntador
+  botf:fiscal
+comenzar
+  AsignarArea(bot1,area1)
+  AsignarArea(bot2,area2)
+  AsignarArea(bot3,area3)
+  AsignarArea(bot4,area4)
+  AsignarArea(bot5,area5)
+  AsignarArea(bot6,area6)
+  AsignarArea(botf,areaf)
+  Iniciar(bot1,1,1)
+  Iniciar(bot2,2,11)
+  Iniciar(bot3,3,21)
+  Iniciar(bot4,4,31)
+  Iniciar(bot5,5,41)
+  Iniciar(bot6,6,51)
+  Iniciar(botf,2,1)
+fin
