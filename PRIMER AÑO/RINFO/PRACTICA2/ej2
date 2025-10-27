@@ -1,0 +1,87 @@
+programa dibujo
+procesos
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+  proceso juntarFlores(ES flores:numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      flores:=flores+1
+  fin
+  proceso juntarPapeles(ES papel:numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      papel:=papel+1
+  fin
+  proceso escalon(E alto:numero;E ancho:numero;ES masFlores:boolean)
+  variables
+    flores:numero
+    papeles:numero
+  comenzar
+    flores:=0
+    papeles:=0
+    repetir alto
+      juntarPapeles(papeles)
+      juntarFlores(flores)
+      mover
+    derecha
+    repetir ancho
+      juntarPapeles(papeles)
+      juntarFlores(flores)
+      mover
+    juntarPapeles(papeles)
+    juntarFlores(flores)
+    izquierda
+    si(flores > papeles)
+      masFlores:=V
+    sino
+      masFlores:=F
+  fin
+areas
+  zonaJefe:AreaP(1,1,1,1)
+  ciudad: AreaC (2,1,100,100)
+robots
+  robot juntador
+  variables
+    cant:numero
+    alto:numero
+    esMasFlores:boolean
+  comenzar
+    cant:=0
+    repetir 4
+      Random(alto,1,5)
+      escalon(alto,1,esMasFlores)
+      si(esMasFlores)
+        cant:=cant+1
+    EnviarMensaje(cant,r4)
+  fin
+  robot jefe
+  variables
+    cantTotal:numero
+    cantNueva:numero
+  comenzar
+    cantTotal:=0
+    repetir 3
+      RecibirMensaje(cantNueva,*)
+      cantTotal:= cantTotal + cantNueva
+    Informar(cantTotal)
+  fin
+variables
+  r1:juntador
+  r2:juntador
+  r3:juntador
+  r4:jefe
+comenzar
+  AsignarArea(r1,ciudad)
+  AsignarArea(r2,ciudad)
+  AsignarArea(r3,ciudad)
+  AsignarArea(r4,zonaJefe)
+  Iniciar(r4,1,1)
+  Iniciar(r1,2,1)
+  Iniciar(r2,7,1)
+  Iniciar(r3,12,1)
+fin
