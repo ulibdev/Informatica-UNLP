@@ -1,0 +1,145 @@
+programa p4ej1
+procesos
+  proceso enviarDatos(E id:numero)
+  variables
+    cantFlores:numero
+    av:numero
+    ca:numero
+  comenzar
+    av:=PosAv
+    ca:=PosCa+1
+    Random(cantFlores,1,4)
+    EnviarMensaje(id,s)
+    EnviarMensaje(cantFlores,s)
+    EnviarMensaje(av,s)
+    EnviarMensaje(ca,s)
+  fin
+  proceso AsignarIDS
+  comenzar
+    EnviarMensaje(1,c1)
+    EnviarMensaje(2,c2)
+    EnviarMensaje(3,c3)
+  fin
+  proceso juntarFlores(ES f:numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      f:=f+1
+  fin
+  proceso tomarFlores(ES f:numero)
+  comenzar
+    mover
+    juntarFlores(f)
+    Pos(PosAv,PosCa-1)
+  fin
+  proceso avanzar(ES f:numero)
+  comenzar
+    mientras((f>0)&(PosCa <100))
+      f:=f-1
+      depositarFlor
+      mover
+    si((f>0)&(PosCa = 100))
+      f:=f-1
+      depositarFlor
+  fin
+  proceso recibirFlores(E id:numero; ES f:numero)
+  comenzar
+    si(id = 1)
+      RecibirMensaje(f,c1)
+    sino
+      si(id = 2)
+        RecibirMensaje(f,c2)
+      sino
+        RecibirMensaje(f,c3)
+  fin
+  proceso recibirPos(E id:numero;ES av:numero; ES ca:numero)
+  comenzar
+    si(id = 1)
+      RecibirMensaje(av,c1)
+      RecibirMensaje(ca,c1)
+    sino
+      si(id = 2)
+        RecibirMensaje(av,c2)
+        RecibirMensaje(ca,c2)
+      sino
+        RecibirMensaje(av,c3)
+        RecibirMensaje(ca,c3)
+  fin
+  proceso dejarFlores(E av:numero; E ca:numero; E f:numero)
+  comenzar
+    Pos(av,ca)
+    repetir f
+      depositarFlor
+    Pos(100,100)
+  fin
+  proceso enviarACK(E id:numero)
+  comenzar
+    si(id = 1)
+      EnviarMensaje(V,c1)
+    sino
+      si(id = 2)
+        EnviarMensaje(V,c2)
+      sino
+        EnviarMensaje(V,c3)
+  fin
+  
+areas
+  area1:AreaPC(1,1,1,100)
+  area2:AreaPC(2,1,2,100)
+  area3:AreaPC(3,1,3,100)
+  area4:AreaP(100,100,100,100)
+robots
+  robot cliente
+  variables
+    id:numero
+    ack:boolean
+    f:numero
+  comenzar
+    f:=0
+    RecibirMensaje(id,s)
+    mientras(PosCa <100)
+      enviarDatos(id)
+      RecibirMensaje(ack,s)
+      tomarFlores(f)
+      avanzar(f)
+    EnviarMensaje(id,s)
+    EnviarMensaje(0,s)
+  fin
+  robot servidor
+  variables
+    finalizados:numero
+    id:numero
+    f:numero
+    av:numero
+    ca:numero
+  comenzar
+    finalizados:=0
+    AsignarIDS
+    mientras(finalizados<3)
+      RecibirMensaje(id,*)
+      recibirFlores(id,f)
+      si(f<>0)
+        recibirPos(id,av,ca)
+        dejarFlores(av,ca,f)
+        enviarACK(id)
+      sino
+        finalizados:= finalizados+1
+  fin
+variables
+  c1:cliente
+  c2:cliente
+  c3:cliente
+  s:servidor
+comenzar
+  AsignarArea(c1,area1)
+  AsignarArea(c2,area2)
+  AsignarArea(c3,area3)
+  AsignarArea(s,area4)
+  AsignarArea(s,area3)
+  AsignarArea(s,area2)
+  AsignarArea(s,area1)
+  Iniciar(c1,1,1)
+  Iniciar(c2,2,1)
+  Iniciar(c3,3,1)
+  Iniciar(s,100,100)  
+fin
