@@ -3,12 +3,7 @@
     entre 1 y 1000.
 */
 
-int i = 1;
-while (i <1000)
-{
-   if(i%17 ==0 | i %29 == 0)Console.WriteLine(i);
-    i++;
-}
+for(int i = 1; i<= 1000;i++)if(i%17 ==0 | i %29 == 0)Console.WriteLine(i);
 Console.ReadKey();
 
 
