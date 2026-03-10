@@ -38,7 +38,9 @@ procesos
     mientras(HayPapelEnLaEsquina) &(papelAgarrados < papel)
       tomarPapel
       papelAgarrados:=papelAgarrados + 1
-    si(papel <> papelAgarrados)
+    si(papel = papelAgarrados)
+      intentos:= 8
+    sino
       papel:=0
       intentos:=intentos-1
       repetir papelAgarrados
