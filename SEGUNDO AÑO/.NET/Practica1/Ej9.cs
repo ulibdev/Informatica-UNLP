@@ -6,16 +6,15 @@
 */
 Console.WriteLine("Diga su palabra");    
 string st1 = Console.ReadLine();
-Console.WriteLine("Diga su segunda palabra");
-string st2 = Console.ReadLine();
 
 
-bool sim = false;
-if(st1.Length == st2.Length)
+
+if(!string.IsNullOrWhiteSpace(st1))
 {
-    for (int i = 0; i<=st1.Length - 1; i++)
+    bool sim = false;
+    for (int i = 0; i<=(st1.Length/2) - 1; i++)
     {
-        if (st1[i].Equals(st2[st2.Length - 1 - i]))
+        if (st1[i].Equals(st1[st1.Length - 1 - i]))
         {
             sim = true;
         }else
@@ -24,10 +23,10 @@ if(st1.Length == st2.Length)
             break;
         }
     }
-}
+    Console.WriteLine(sim);
+}else Console.WriteLine("no caracteres");
 
-Console.WriteLine(sim);
+
 Console.ReadKey();
-
 
 

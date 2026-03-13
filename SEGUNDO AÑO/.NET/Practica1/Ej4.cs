@@ -7,10 +7,9 @@
     Console.WriteLine("DAME TU NOMBRE");
     string name = Console.ReadLine();
     //operador condicional ternario utilizado
-    string hello = "Hello" + (name.Equals("") ? " World" : name);
+    string hello = "Hello" + (string.IsNullOrWhiteSpace(name) ? " World" : name);
     Console.WriteLine(hello);
     Console.ReadKey();
-
 
 
 
