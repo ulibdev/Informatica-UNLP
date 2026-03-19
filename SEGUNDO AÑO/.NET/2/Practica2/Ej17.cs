@@ -1,5 +1,5 @@
 ﻿
-int n = int.Parse(Console.ReadLine());
+int n = int.Parse(args[0]);
 for(int i= 1; i< n; i++)
 {
     if(EsPrimo(i))Console.WriteLine(i);
