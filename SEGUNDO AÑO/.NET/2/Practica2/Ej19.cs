@@ -42,8 +42,13 @@ void FACOUT(int n, out int f)
 
 void FACOUTR(int n, out int f)
 {
-    if(n == 1)f = n;
-    else n * FACOUTR(n-1,out f);
+    if(n == 1)f = 1;
+    else
+    {   
+        int f2;
+        FACOUTR(n-1,out f2);
+        f = n* f2;
+    } 
 }
 
 Console.WriteLine(FacNR(int.Parse(args[0])));
@@ -54,3 +59,7 @@ Console.WriteLine(FacSROCT(int.Parse(args[0])));
 int x;
 FACOUT(int.Parse(args[0]),out x);
 Console.WriteLine(x);
+
+int y;
+FACOUT(int.Parse(args[0]),out y);
+Console.WriteLine(y);
