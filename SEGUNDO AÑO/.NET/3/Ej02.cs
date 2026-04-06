@@ -1,4 +1,11 @@
-﻿void ImprimirMatriz(double[,] matriz)
+﻿/*
+2) Implementar un método para imprimir por consola todos los elementos de una matriz (arreglo de dos
+dimensiones) pasada como parámetro. Debe imprimir todos los elementos de una fila en la misma línea
+en la consola.
+*/
+
+
+void ImprimirMatriz(double[,] matriz)
 {
     for(int i = 0; i < matriz.GetLength(0); i++)
     {
