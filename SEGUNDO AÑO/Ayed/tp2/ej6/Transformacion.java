@@ -15,27 +15,28 @@ public class Transformacion {
 	
 	public BinaryTree<Integer> suma(){
 		
-		proceso(this.getArbol());
-		return this.getArbol();
+		BinaryTree<Integer> arbolNuevo = new BinaryTree<Integer>(0);
+		proceso(this.getArbol(),arbolNuevo);
+		return arbolNuevo;
 	}
 	
-	private int proceso(BinaryTree<Integer> arbol){
+	private int proceso(BinaryTree<Integer> arbol,BinaryTree<Integer> arbolNuevo){
 		
 		if(!arbol.isEmpty()) {
 			int cant = 0;
 			int act = arbol.getData();
-			if(arbol.isLeaf()) {
-				arbol.setData(0);
-				return act;
-			}
+			
+			BinaryTree<Integer> hi = new BinaryTree<Integer>(0);
+			BinaryTree<Integer> hd = new BinaryTree<Integer>(0);
 			if(arbol.hasLeftChild()) {
-				cant += proceso(arbol.getLeftChild());
+				cant += proceso(arbol.getLeftChild(),hi);
+				arbolNuevo.addLeftChild(hi);
 			}
 			if(arbol.hasRightChild()) {
-				cant += proceso(arbol.getRightChild());
+				cant += proceso(arbol.getRightChild(),hd);
+				arbolNuevo.addRightChild(hd);
 			}
-			
-			arbol.setData(cant);
+			arbolNuevo.setData(cant);
 			return cant + act;
 		}else return 0;
 	}
@@ -50,8 +51,8 @@ public class Transformacion {
 		arbol.addRightChild(new BinaryTree<Integer>(5));
 		
 		Transformacion a = new Transformacion(arbol);
-		a.suma();
-		arbol.entreNiveles(0, 3);
+		BinaryTree<Integer> arbol2 = a.suma();
+		arbol2.entreNiveles(0, 3);
 
 	}
 
