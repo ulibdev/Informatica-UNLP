@@ -3,6 +3,8 @@ package tp3.ej1;
 import java.util.LinkedList;
 import java.util.List;
 
+import tp1.ej8.Queue;
+
 public class GeneralTree<T>{
 
 	private T data;
@@ -57,17 +59,76 @@ public class GeneralTree<T>{
 			children.remove(child);
 	}
 	
-	public int altura() {	 
-			
-		return 0;
+	public int altura() {
+		int altura = 0;
+		if(!this.isEmpty()) {
+			Queue<List<GeneralTree<T>>> cola = new Queue<List<GeneralTree<T>>>();
+			altura -=1;
+			cola.enqueue(this.getChildren());
+			cola.enqueue(null);
+			while(!cola.isEmpty()) {
+				List<GeneralTree<T>> lista = cola.dequeue();
+				if(lista != null) {
+					for(GeneralTree<T> hijo : lista) {
+						if(hijo.hasChildren()) {
+							cola.enqueue(hijo.getChildren());
+						}
+					}
+					cola.enqueue(null);
+				}
+				else altura+=1;
+			}
+		}return altura;	
 	}
 	
-	public int nivel(T dato){
-		return 0;
-	  }
+	public int nivel(T dato) {
+		
+		if(this != null && !this.isEmpty()) {
+			int nivel = 0;
+			Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
+			cola.enqueue(this);
+			cola.enqueue(null);
+			while(!cola.isEmpty()) {
+			    GeneralTree<T> aux = cola.dequeue();
+			    if(aux != null) {
+			    	if(aux.getData() == dato)return nivel;
+					else {
+						if(aux.hasChildren()) {
+							for(GeneralTree<T> hijo : aux.getChildren())cola.enqueue(hijo);
+						}
+					}
+				}else nivel+=1;
+			}
+			return -1;
+		}else return -1;
+	}
+	
 
 	public int ancho(){
-		
-		return 0;
+		int anc = 0;
+		if(this != null && !this.isEmpty()) {
+			Queue <GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
+			cola.enqueue(this);
+			cola.enqueue(null);
+			int act= 0;
+			while(!cola.isEmpty()) {
+				GeneralTree<T> aux = cola.dequeue();
+				if(aux != null) {
+					act+=1;
+					if(aux.hasChildren()) {
+						for(GeneralTree<T> hijo : aux.getChildren()) {
+							cola.enqueue(hijo);
+							
+						}
+					}
+				}else { if(!cola.isEmpty()){
+					cola.enqueue(null);
+					}
+					anc = Math.max(act, anc);
+					act = 0;
+				}
+			}
+		}
+		return anc;
 	}
 }
