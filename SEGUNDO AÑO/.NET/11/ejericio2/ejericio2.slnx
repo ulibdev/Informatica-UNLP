@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Hosting.Apihost/">
+    <Project Path="Hosting.Apihost/Hosting.ApiHost.csproj" />
+  </Folder>
+  <Project Path="Hosting.Aplicacion/Hosting.Aplicacion.csproj" />
+</Solution>
