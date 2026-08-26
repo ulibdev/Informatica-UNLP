@@ -4,11 +4,11 @@ import java.time.LocalDate;
 public class Ticket {
 	
 	private LocalDate fecha;
-	private Integer cantidadDeProductos;
-	private Double pesoTotal;
-	private Double precioTotal;
+	private int cantidadDeProductos;
+	private double pesoTotal;
+	private double precioTotal;
 	
-	public Ticket(Integer cantidadDeProductos, Double pesoTotal, Double precioTotal) {
+	public Ticket(int cantidadDeProductos, double pesoTotal, double precioTotal) {
 		this.cantidadDeProductos = cantidadDeProductos;
 		this.pesoTotal = pesoTotal;
 		this.precioTotal = precioTotal;
@@ -19,31 +19,31 @@ public class Ticket {
 		return fecha;
 	}
 
-	public Double impuesto() {
+	public double impuesto() {
 		return this.precioTotal * 0.21;
 	}
 
-	public Integer getCantidadDeProductos() {
+	public int getCantidadDeProductos() {
 		return this.cantidadDeProductos;
 	}
 
-	public void setCantidadDeProductos(Integer cantidadDeProductos) {
+	public void setCantidadDeProductos(int cantidadDeProductos) {
 		this.cantidadDeProductos = cantidadDeProductos;
 	}
 
-	public Double getPesoTotal() {
+	public double getPesoTotal() {
 		return this.pesoTotal;
 	}
 
-	public void setPesoTotal(Double pesoTotal) {
+	public void setPesoTotal(double pesoTotal) {
 		this.pesoTotal = pesoTotal;
 	}
 
-	public Double getPrecioTotal() {
+	public double getPrecioTotal() {
 		return this.precioTotal;
 	}
 
-	public void setPrecioTotal(Double precioTotal) {
+	public void setPrecioTotal(double precioTotal) {
 		this.precioTotal = precioTotal;
 	}
 }

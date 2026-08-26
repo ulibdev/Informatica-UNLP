@@ -1,16 +1,9 @@
 package ar.edu.unlp.info.oo1.ejercicio2;
 
 public class Balanza {
-	private Integer cantidadDeProductos;
-	private Double precioTotal;
-	private Double pesoTotal;
-	
-	
-	public Balanza() {
-		this.cantidadDeProductos = 0;
-		this.precioTotal= 0.0;
-		this.pesoTotal = 0.0;
-	}
+	private int cantidadDeProductos;
+	private double precioTotal;
+	private double pesoTotal;
 	
 	public void ponerEnCero() {
 		this.cantidadDeProductos = 0;
@@ -23,15 +16,15 @@ public class Balanza {
 		this.pesoTotal += producto.getPeso();
 	}
 	
-	public Integer getCantidadDeProductos() {
+	public int getCantidadDeProductos() {
 		return cantidadDeProductos;
 	}
 
-	public Double getPrecioTotal() {
+	public double getPrecioTotal() {
 		return precioTotal;
 	}
 
-	public Double getPesoTotal() {
+	public double getPesoTotal() {
 		return pesoTotal;
 	}
 

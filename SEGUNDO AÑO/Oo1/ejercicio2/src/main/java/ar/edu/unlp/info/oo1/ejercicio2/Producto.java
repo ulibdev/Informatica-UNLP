@@ -1,8 +1,8 @@
 package ar.edu.unlp.info.oo1.ejercicio2;
 
 public class Producto {
-	private Double peso;
-	private Double precioPorKilo;
+	private double peso;
+	private double precioPorKilo;
 	private String descripcion;
 	
 	public Producto(String descripcion,double peso, double precioPorKilo) {
@@ -15,13 +15,13 @@ public class Producto {
 	public void setPrecioPorKilo(double precioPorKilo) {
 		this.precioPorKilo = precioPorKilo;
 	}
-	public Double getPrecioPorKilo() {
+	public double getPrecioPorKilo() {
 		return this.precioPorKilo;
 	}
-	public Double getPrecio() {
+	public double getPrecio() {
 		return this.getPrecioPorKilo() * this.getPeso();
 	}
-	public Double getPeso() {
+	public double getPeso() {
 		return this.peso;
 	}
 	public String getDescripcion() {
